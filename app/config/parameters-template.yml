@@ -19,18 +19,15 @@ parameters:
     easybacklog_api.userid:           xsxsxsxsxssx
 
     teams:
-        raptor:
-            name:   Raptor
-            backlog:  1111
-        prime:
-            name:   Prime
-            backlog:  2222
-        ateam:
-            name:   A-Team
-            backlog:  3333
-        gaia:
-            name:   Gaia
-            backlog:  4444
+        teama:
+            name:   Team A
+            backlog:  32573
+        teamb:
+            name:   Team B
+            backlog:  23574
+        teamc:
+            name:   Team C
+            backlog:  23566
 
     memcached.servers:
       - { host: 127.0.0.1, port: 11211 }
