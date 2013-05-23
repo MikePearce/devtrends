@@ -1,0 +1,24 @@
+{% extends 'ApplicationDefaultBundle::layout.html.twig' %}
+{% block body %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    {% if backlog is defined %}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('body').data('backlog', "{{backlog}}");
+            });
+        </script>
+    {% endif %} 
+    {% javascripts '@ApplicationDefaultBundle/Resources/public/js/velocity.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% set menu = knp_menu_get('ApplicationDefaultBundle:Builder:mainMenu', ['Velocity'], {'submenu': 'true'}) %}
+    {{ knp_menu_render(menu) }}
+
+    <h1>Velocity for {% if teamname is defined %} team {{teamname}} {% else %} Department{% endif %}</h1>
+    <p>
+        The velocity charts show your long-term velocity. Your average over
+        all the sprints. This should be updated to show a rolling velocity
+        of the last six sprints to be a better reflection of how you're doing.
+    </p>
+    <div id="chart_div" style="width: 950px; height: 500px;"></div>
+{% endblock %}

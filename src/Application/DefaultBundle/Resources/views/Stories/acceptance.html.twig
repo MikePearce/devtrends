@@ -1,0 +1,27 @@
+{% extends 'ApplicationDefaultBundle::layout.html.twig' %}
+{% block body %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    
+        <script type="text/javascript">
+            $(document).ready(function() {
+                {% if backlog is defined %}$('body').data('backlog', "{{backlog}}");{% endif %} 
+                {% if charttype is defined %}$('body').data('charttype', "{{charttype}}");{% endif %} 
+                {% if datatype is defined %}$('body').data('datatype', "{{datatype}}");{% endif %} 
+            });
+        </script>
+    
+    {% javascripts '@ApplicationDefaultBundle/Resources/public/js/stories.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% set menu = knp_menu_get('ApplicationDefaultBundle:Builder:mainMenu', ['Acceptance'], {'submenu': 'true' }) %}
+    {{ knp_menu_render(menu) }}
+
+    <h1>Acceptance Rate {% if teamname is defined %} for team {{teamname}} {% endif %}</h1>
+    <p>
+        The acceptance rate is the percentage of story points in a sprint that 
+        were 'accepted' by the product owner. For example, if we commit to 20 points 
+        made of four size five stories, then the product owner accepts 15 points as completed 
+        (three stories), then we'll only have a 75% acceptance rate for that sprint.
+    </p>
+    <div id="chart_div" style="width: 950px; height: 500px;"></div>
+{% endblock %}
